@@ -1,0 +1,203 @@
+.users-management {
+  padding: 20px;
+}
+
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.create-user-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-user-form {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.create-user-form form {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+}
+
+.create-user-form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.create-user-form button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.users-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.users-list {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.user-item {
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.user-item:hover {
+  background: #f8f9fa;
+}
+
+.user-item.selected {
+  border-color: #007bff;
+  background: #e3f2fd;
+}
+
+.user-info h4 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.user-info p {
+  margin: 0 0 5px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.user-role {
+  background: #6c757d;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.user-orders {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #eee;
+}
+
+.order-stats {
+  display: flex;
+  gap: 15px;
+}
+
+.order-stats span {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.total-orders {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.pending-orders {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.delivered-orders {
+  background: #e8f5e8;
+  color: #388e3c;
+}
+
+.order-item {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.order-id {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.order-date {
+  color: #666;
+  font-size: 14px;
+}
+
+.order-items {
+  margin: 10px 0;
+  color: #333;
+}
+
+.order-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-amount {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.order-status {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.order-status.pending {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.order-status.delivered {
+  background: #e8f5e8;
+  color: #388e3c;
+}
+
+.no-orders {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}

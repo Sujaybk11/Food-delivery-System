@@ -1,0 +1,125 @@
+.admin-login-popup {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: grid;
+    place-items: center;
+}
+
+.admin-login-popup-container {
+    place-self: center;
+    width: max(23vw, 330px);
+    color: #808080;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 25px 30px;
+    border-radius: 8px;
+    font-size: 14px;
+    animation: fadeIn 0.5s;
+}
+
+.admin-login-popup-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+}
+
+.admin-login-popup-title h2 {
+    color: #ff6347;
+    margin: 0;
+}
+
+.admin-login-popup-title img {
+    width: 16px;
+    cursor: pointer;
+}
+
+.admin-login-popup-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.admin-login-popup-inputs input {
+    outline: none;
+    border: 1px solid #c9c9c9;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.admin-login-popup-container button {
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    color: white;
+    background: #ff6347;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-login-popup-container button:hover {
+    background: #e5533d;
+}
+
+.admin-login-popup-container p {
+    color: #ff6347;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
+}
+
+.admin-credentials {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid #ff6347;
+}
+
+.admin-credentials h4 {
+    margin: 0 0 10px 0;
+    color: #ff6347;
+    font-size: 14px;
+}
+
+.credential-item {
+    margin: 5px 0;
+    font-size: 13px;
+    color: #333;
+}
+
+.admin-instructions {
+    background: #e8f4fd;
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid #007bff;
+}
+
+.admin-instructions p {
+    margin: 0 0 8px 0;
+    color: #007bff;
+    text-align: left;
+    font-size: 13px;
+}
+
+.admin-instructions ul {
+    margin: 0;
+    padding-left: 18px;
+    color: #555;
+}
+
+.admin-instructions li {
+    font-size: 12px;
+    margin: 3px 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}

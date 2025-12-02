@@ -1,0 +1,49 @@
+.restaurant-menu {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.restaurant-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 40px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+}
+
+.restaurant-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.restaurant-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.menu-items h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+}
+
+.food-display-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .restaurant-header h1 {
+    font-size: 2rem;
+  }
+  
+  .food-display-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

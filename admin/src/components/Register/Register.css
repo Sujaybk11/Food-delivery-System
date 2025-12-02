@@ -1,0 +1,23 @@
+.admin-register {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.admin-register p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.admin-register button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.admin-register button:hover {
+  color: #0056b3;
+}
