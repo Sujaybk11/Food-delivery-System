@@ -1,0 +1,10 @@
+{
+  "name": "food-delivery-system",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "build": "cd frontend && npm install && npm run build",
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install"
+  }
+}
