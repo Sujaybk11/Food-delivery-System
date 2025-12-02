@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: food-delivery-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URL
+        value: mongodb+srv://sujaybk112005_db_user:Strepto%401969@tomato.dwkecf2.mongodb.net/tomato?retryWrites=true&w=majority&appName=tomato
+      - key: PORT
+        value: 4000
+      - key: JWT_SECRET
+        value: your_super_secret_jwt_key_food_delivery_2024_change_this_in_production
+      - key: SALT
+        value: 10
+      - key: ADMIN_EMAIL
+        value: admin@fooddelivery.com
+      - key: DEFAULT_ADMIN_PASSWORD
+        value: admin123

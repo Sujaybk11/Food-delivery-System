@@ -25,31 +25,37 @@ const LoginPopup = ({ setShowLogin }) => {
   const onLogin = async (event) => {
     event.preventDefault();
     
+    let newUrl = url;
+    if (currentState === "Login") {
+      newUrl += "/api/user/login";
+    } else {
+      newUrl += "/api/user/register";
+    }
+    
     try {
-      // Demo login - simulate successful authentication
-      const demoToken = 'demo_token_' + Date.now();
+      const response = await axios.post(newUrl, data);
       
-      // Check for admin credentials
-      if (data.email === 'admin@fooddelivery.com' && data.password === 'admin123') {
-        localStorage.setItem("admin", "true");
-        localStorage.setItem("token", demoToken);
-        setToken(demoToken);
-        toast.success("Admin Login Successfully");
-        navigate('/admin');
-      } else if (data.email && data.password) {
-        // Regular user login
-        localStorage.setItem("token", demoToken);
-        localStorage.removeItem("admin");
-        setToken(demoToken);
-        toast.success("Login Successfully");
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        
+        // Check for admin credentials
+        if (data.email === 'admin@fooddelivery.com') {
+          localStorage.setItem("admin", "true");
+          toast.success("Admin Login Successfully");
+          navigate('/admin');
+        } else {
+          localStorage.removeItem("admin");
+          toast.success(currentState === "Login" ? "Login Successfully" : "Account Created Successfully");
+        }
+        
+        setShowLogin(false);
       } else {
-        toast.error("Please enter valid credentials");
-        return;
+        toast.error(response.data.message || "Authentication failed");
       }
-      
-      setShowLogin(false);
     } catch (error) {
-      toast.error("Login failed. Please try again.");
+      console.error('Auth error:', error);
+      toast.error(error.response?.data?.message || "Authentication failed. Please try again.");
     }
   };
   return (
