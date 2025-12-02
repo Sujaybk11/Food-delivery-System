@@ -97,32 +97,32 @@ const StoreContextProvider = (props) => {
 
   const mockFoodData = [
     // Dragon Palace - Chinese Cuisine
-    { _id: '1', name: 'Kung Pao Chicken', category: 'Chicken', price: 16.99, image: 'food_1.png', description: 'Spicy chicken with peanuts and vegetables', quantity: 50, isAvailable: true, outOfStock: false, restaurant: "Dragon Palace" },
-    { _id: '2', name: 'Sweet & Sour Pork', category: 'Pork', price: 18.99, image: 'food_2.png', description: 'Crispy pork in tangy sweet and sour sauce', quantity: 30, isAvailable: true, outOfStock: false, restaurant: "Dragon Palace" },
-    { _id: '3', name: 'Beef Black Bean', category: 'Beef', price: 19.99, image: 'food_3.png', description: 'Tender beef in savory black bean sauce', quantity: 25, isAvailable: true, outOfStock: false, restaurant: "Dragon Palace" },
-    { _id: '4', name: 'Vegetable Spring Rolls', category: 'Veg', price: 8.99, image: 'food_4.png', description: 'Crispy vegetable spring rolls with dipping sauce', quantity: 40, isAvailable: true, outOfStock: false, restaurant: "Dragon Palace" },
-    { _id: '5', name: 'Hot & Sour Soup', category: 'Soup', price: 7.99, image: 'food_5.png', description: 'Traditional spicy and tangy soup', quantity: 35, isAvailable: true, outOfStock: false, restaurant: "Dragon Palace" },
+    { _id: '1', name: 'Kung Pao Chicken', category: 'Chicken', price: 16.99, image: '/src/assets/frontend_assets/food_1.png', description: 'Spicy chicken with peanuts and vegetables', quantity: 50, isAvailable: true, outOfStock: false, restaurant: "Dragon Palace" },
+    { _id: '2', name: 'Sweet & Sour Pork', category: 'Pork', price: 18.99, image: '/src/assets/frontend_assets/food_2.png', description: 'Crispy pork in tangy sweet and sour sauce', quantity: 30, isAvailable: true, outOfStock: false, restaurant: "Dragon Palace" },
+    { _id: '3', name: 'Beef Black Bean', category: 'Beef', price: 19.99, image: '/src/assets/frontend_assets/food_3.png', description: 'Tender beef in savory black bean sauce', quantity: 25, isAvailable: true, outOfStock: false, restaurant: "Dragon Palace" },
+    { _id: '4', name: 'Vegetable Spring Rolls', category: 'Veg', price: 8.99, image: '/src/assets/frontend_assets/food_4.png', description: 'Crispy vegetable spring rolls with dipping sauce', quantity: 40, isAvailable: true, outOfStock: false, restaurant: "Dragon Palace" },
+    { _id: '5', name: 'Hot & Sour Soup', category: 'Soup', price: 7.99, image: '/src/assets/frontend_assets/food_5.png', description: 'Traditional spicy and tangy soup', quantity: 35, isAvailable: true, outOfStock: false, restaurant: "Dragon Palace" },
     
     // Golden Wok - Thai Cuisine
-    { _id: '6', name: 'Pad Thai Noodles', category: 'Noodles', price: 14.99, image: 'food_6.png', description: 'Thai stir-fried noodles with tamarind sauce', quantity: 35, isAvailable: true, outOfStock: false, restaurant: "Golden Wok" },
-    { _id: '7', name: 'Green Curry Chicken', category: 'Chicken', price: 17.99, image: 'food_7.png', description: 'Thai green curry with coconut milk', quantity: 30, isAvailable: true, outOfStock: false, restaurant: "Golden Wok" },
-    { _id: '8', name: 'Tom Yum Soup', category: 'Soup', price: 9.99, image: 'food_8.png', description: 'Spicy Thai soup with lemongrass', quantity: 40, isAvailable: true, outOfStock: false, restaurant: "Golden Wok" },
-    { _id: '9', name: 'Vegetable Pad See Ew', category: 'Veg', price: 13.99, image: 'food_9.png', description: 'Wide rice noodles with vegetables', quantity: 25, isAvailable: true, outOfStock: false, restaurant: "Golden Wok" },
-    { _id: '10', name: 'Mango Sticky Rice', category: 'Dessert', price: 8.99, image: 'food_10.png', description: 'Sweet sticky rice with fresh mango', quantity: 20, isAvailable: true, outOfStock: false, restaurant: "Golden Wok" },
+    { _id: '6', name: 'Pad Thai Noodles', category: 'Noodles', price: 14.99, image: '/src/assets/frontend_assets/food_6.png', description: 'Thai stir-fried noodles with tamarind sauce', quantity: 35, isAvailable: true, outOfStock: false, restaurant: "Golden Wok" },
+    { _id: '7', name: 'Green Curry Chicken', category: 'Chicken', price: 17.99, image: '/src/assets/frontend_assets/food_7.png', description: 'Thai green curry with coconut milk', quantity: 30, isAvailable: true, outOfStock: false, restaurant: "Golden Wok" },
+    { _id: '8', name: 'Tom Yum Soup', category: 'Soup', price: 9.99, image: '/src/assets/frontend_assets/food_8.png', description: 'Spicy Thai soup with lemongrass', quantity: 40, isAvailable: true, outOfStock: false, restaurant: "Golden Wok" },
+    { _id: '9', name: 'Vegetable Pad See Ew', category: 'Veg', price: 13.99, image: '/src/assets/frontend_assets/food_9.png', description: 'Wide rice noodles with vegetables', quantity: 25, isAvailable: true, outOfStock: false, restaurant: "Golden Wok" },
+    { _id: '10', name: 'Mango Sticky Rice', category: 'Dessert', price: 8.99, image: '/src/assets/frontend_assets/food_10.png', description: 'Sweet sticky rice with fresh mango', quantity: 20, isAvailable: true, outOfStock: false, restaurant: "Golden Wok" },
     
     // Spice Garden - Indian Cuisine
-    { _id: '11', name: 'Butter Chicken', category: 'Chicken', price: 18.99, image: 'food_11.png', description: 'Creamy tomato curry with tender chicken', quantity: 45, isAvailable: true, outOfStock: false, restaurant: "Spice Garden" },
-    { _id: '12', name: 'Palak Paneer', category: 'Veg', price: 15.99, image: 'food_12.png', description: 'Cottage cheese in creamy spinach curry', quantity: 30, isAvailable: true, outOfStock: false, restaurant: "Spice Garden" },
-    { _id: '13', name: 'Lamb Biryani', category: 'Lamb', price: 22.99, image: 'food_13.png', description: 'Aromatic basmati rice with spiced lamb', quantity: 15, isAvailable: true, outOfStock: false, restaurant: "Spice Garden" },
-    { _id: '14', name: 'Tandoori Chicken', category: 'Chicken', price: 19.99, image: 'food_14.png', description: 'Clay oven roasted chicken with spices', quantity: 25, isAvailable: true, outOfStock: false, restaurant: "Spice Garden" },
-    { _id: '15', name: 'Gulab Jamun', category: 'Dessert', price: 6.99, image: 'food_15.png', description: 'Sweet milk dumplings in rose syrup', quantity: 50, isAvailable: true, outOfStock: false, restaurant: "Spice Garden" },
+    { _id: '11', name: 'Butter Chicken', category: 'Chicken', price: 18.99, image: '/src/assets/frontend_assets/food_11.png', description: 'Creamy tomato curry with tender chicken', quantity: 45, isAvailable: true, outOfStock: false, restaurant: "Spice Garden" },
+    { _id: '12', name: 'Palak Paneer', category: 'Veg', price: 15.99, image: '/src/assets/frontend_assets/food_12.png', description: 'Cottage cheese in creamy spinach curry', quantity: 30, isAvailable: true, outOfStock: false, restaurant: "Spice Garden" },
+    { _id: '13', name: 'Lamb Biryani', category: 'Lamb', price: 22.99, image: '/src/assets/frontend_assets/food_13.png', description: 'Aromatic basmati rice with spiced lamb', quantity: 15, isAvailable: true, outOfStock: false, restaurant: "Spice Garden" },
+    { _id: '14', name: 'Tandoori Chicken', category: 'Chicken', price: 19.99, image: '/src/assets/frontend_assets/food_14.png', description: 'Clay oven roasted chicken with spices', quantity: 25, isAvailable: true, outOfStock: false, restaurant: "Spice Garden" },
+    { _id: '15', name: 'Gulab Jamun', category: 'Dessert', price: 6.99, image: '/src/assets/frontend_assets/food_15.png', description: 'Sweet milk dumplings in rose syrup', quantity: 50, isAvailable: true, outOfStock: false, restaurant: "Spice Garden" },
     
     // Pizza Corner - Italian Cuisine
-    { _id: '16', name: 'Margherita Pizza', category: 'Veg', price: 16.99, image: 'food_16.png', description: 'Fresh tomatoes, mozzarella, and basil', quantity: 25, isAvailable: true, outOfStock: false, restaurant: "Pizza Corner" },
-    { _id: '17', name: 'Pepperoni Pizza', category: 'Meat', price: 19.99, image: 'food_17.png', description: 'Classic pepperoni with mozzarella cheese', quantity: 30, isAvailable: true, outOfStock: false, restaurant: "Pizza Corner" },
-    { _id: '18', name: 'Chicken Alfredo Pasta', category: 'Chicken', price: 17.99, image: 'food_18.png', description: 'Creamy alfredo sauce with grilled chicken', quantity: 20, isAvailable: true, outOfStock: false, restaurant: "Pizza Corner" },
-    { _id: '19', name: 'Caesar Salad', category: 'Veg', price: 12.99, image: 'food_19.png', description: 'Crisp romaine with parmesan and croutons', quantity: 35, isAvailable: true, outOfStock: false, restaurant: "Pizza Corner" },
-    { _id: '20', name: 'Tiramisu', category: 'Dessert', price: 7.99, image: 'food_20.png', description: 'Classic Italian coffee-flavored dessert', quantity: 15, isAvailable: true, outOfStock: false, restaurant: "Pizza Corner" }
+    { _id: '16', name: 'Margherita Pizza', category: 'Veg', price: 16.99, image: '/src/assets/frontend_assets/food_16.png', description: 'Fresh tomatoes, mozzarella, and basil', quantity: 25, isAvailable: true, outOfStock: false, restaurant: "Pizza Corner" },
+    { _id: '17', name: 'Pepperoni Pizza', category: 'Meat', price: 19.99, image: '/src/assets/frontend_assets/food_17.png', description: 'Classic pepperoni with mozzarella cheese', quantity: 30, isAvailable: true, outOfStock: false, restaurant: "Pizza Corner" },
+    { _id: '18', name: 'Chicken Alfredo Pasta', category: 'Chicken', price: 17.99, image: '/src/assets/frontend_assets/food_18.png', description: 'Creamy alfredo sauce with grilled chicken', quantity: 20, isAvailable: true, outOfStock: false, restaurant: "Pizza Corner" },
+    { _id: '19', name: 'Caesar Salad', category: 'Veg', price: 12.99, image: '/src/assets/frontend_assets/food_19.png', description: 'Crisp romaine with parmesan and croutons', quantity: 35, isAvailable: true, outOfStock: false, restaurant: "Pizza Corner" },
+    { _id: '20', name: 'Tiramisu', category: 'Dessert', price: 7.99, image: '/src/assets/frontend_assets/food_20.png', description: 'Classic Italian coffee-flavored dessert', quantity: 15, isAvailable: true, outOfStock: false, restaurant: "Pizza Corner" }
   ];
 
   const fetchFoodList = async () => {
