@@ -113,41 +113,65 @@ const userOrders = async (req, res) => {
 // Listing orders for admin pannel
 const listOrders = async (req, res) => {
   try {
-    let userData = await userModel.findById(req.body.userId);
-    if (userData && userData.role === "admin") {
-      const orders = await orderModel.find({});
-      res.json({ success: true, data: orders });
-    } else {
-      res.json({ success: false, message: "You are not admin" });
+    // Check if request has admin token
+    const token = req.headers.token;
+    if (!token) {
+      return res.json({ success: false, message: "No token provided" });
     }
+    
+    // Verify admin token
+    const jwt = await import('jsonwebtoken');
+    const decoded = jwt.default.verify(token, process.env.JWT_SECRET);
+    
+    if (!decoded.isAdmin) {
+      return res.json({ success: false, message: "You are not admin" });
+    }
+    
+    const orders = await orderModel.find({}).sort({ createdAt: -1 });
+    res.json({ success: true, data: orders });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.log("List orders error:", error);
+    res.json({ success: false, message: "Error fetching orders" });
   }
 };
 
 // api for updating status
 const updateStatus = async (req, res) => {
   try {
-    let userData = await userModel.findById(req.body.userId);
-    if (userData && userData.role === "admin") {
-      const updateData = {
-        status: req.body.status,
-      };
-      
-      // Add delivery timestamp if marking as delivered
-      if (req.body.status === "Delivered" && req.body.deliveredAt) {
-        updateData.deliveredAt = req.body.deliveredAt;
-      }
-      
-      await orderModel.findByIdAndUpdate(req.body.orderId, updateData);
+    // Check if request has admin token (from admin login)
+    const token = req.headers.token;
+    if (!token) {
+      return res.json({ success: false, message: "No token provided" });
+    }
+    
+    // Verify admin token
+    const jwt = await import('jsonwebtoken');
+    const decoded = jwt.default.verify(token, process.env.JWT_SECRET);
+    
+    if (!decoded.isAdmin) {
+      return res.json({ success: false, message: "You are not an admin" });
+    }
+    
+    const updateData = {
+      status: req.body.status,
+    };
+    
+    // Add delivery timestamp if marking as delivered
+    if (req.body.status === "Delivered" && req.body.deliveredAt) {
+      updateData.deliveredAt = req.body.deliveredAt;
+    }
+    
+    const result = await orderModel.findByIdAndUpdate(req.body.orderId, updateData, { new: true });
+    
+    if (result) {
+      console.log(`Order ${req.body.orderId} status updated to: ${req.body.status}`);
       res.json({ success: true, message: "Status Updated Successfully" });
-    }else{
-      res.json({ success: false, message: "You are not an admin" });
+    } else {
+      res.json({ success: false, message: "Order not found" });
     }
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.log("Update status error:", error);
+    res.json({ success: false, message: "Error updating status" });
   }
 };
 

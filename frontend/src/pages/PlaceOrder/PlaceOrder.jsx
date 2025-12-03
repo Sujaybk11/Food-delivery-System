@@ -47,28 +47,18 @@ const PlaceOrder = () => {
     };
     
     try {
-      // Simulate order placement for demo
-      const orderId = 'ORD' + Date.now();
-      const orderInfo = {
-        orderId: orderId,
-        items: orderItems,
-        amount: getTotalCartAmount() + 2,
-        address: data,
-        status: 'Order Placed',
-        date: new Date().toISOString()
-      };
+      const response = await axios.post(url + "/api/order/place-cod", orderData, {
+        headers: { token }
+      });
       
-      // Save order to localStorage for demo
-      const existingOrders = JSON.parse(localStorage.getItem('userOrders') || '[]');
-      existingOrders.push(orderInfo);
-      localStorage.setItem('userOrders', JSON.stringify(existingOrders));
-      
-      // Clear cart
-      localStorage.removeItem('cartItems');
-      
-      toast.success(`Order Confirmed! Order ID: ${orderId}`);
-      navigate("/myorders");
+      if (response.data.success) {
+        toast.success("Order placed successfully!");
+        navigate("/myorders");
+      } else {
+        toast.error(response.data.message || "Failed to place order");
+      }
     } catch (error) {
+      console.error("Order placement error:", error);
       toast.error('Failed to place order. Please try again.');
     }
   };

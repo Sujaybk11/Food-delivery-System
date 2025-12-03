@@ -18,27 +18,17 @@ const MyOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      // Load orders from localStorage for demo
-      const savedOrders = JSON.parse(localStorage.getItem('userOrders') || '[]');
-      
-      // Simulate order status progression
-      const updatedOrders = savedOrders.map(order => {
-        const orderTime = new Date(order.date);
-        const now = new Date();
-        const minutesElapsed = (now - orderTime) / (1000 * 60);
-        
-        if (minutesElapsed > 15) {
-          return { ...order, status: 'Delivered' };
-        } else if (minutesElapsed > 10) {
-          return { ...order, status: 'Out for delivery' };
-        } else if (minutesElapsed > 5) {
-          return { ...order, status: 'Food Processing' };
-        }
-        return { ...order, status: 'Order Placed' };
+      const response = await axios.post(url + "/api/order/userorders", {}, {
+        headers: { token }
       });
       
-      setOrders(updatedOrders.reverse()); // Latest first
+      if (response.data.success) {
+        setOrders(response.data.data.reverse()); // Latest first
+      } else {
+        toast.error(response.data.message || "Failed to fetch orders");
+      }
     } catch (error) {
+      console.error("Fetch orders error:", error);
       toast.error("Failed to fetch orders");
     } finally {
       setLoading(false);
@@ -58,8 +48,8 @@ const MyOrders = () => {
       setTimers(prev => {
         const newTimers = { ...prev };
         orders.forEach(order => {
-          if (order.status !== 'Delivered' && order.status !== 'Cancelled' && canCancelOrder(order.date)) {
-            newTimers[order._id] = getTimeLeft(order.date);
+          if (order.status !== 'Delivered' && order.status !== 'Cancelled' && canCancelOrder(order.createdAt)) {
+            newTimers[order._id] = getTimeLeft(order.createdAt);
           }
         });
         return newTimers;
@@ -246,7 +236,7 @@ const MyOrders = () => {
               <div className="order-header">
                 <div className="order-info">
                   <h3>Order #{order.orderId}</h3>
-                  <p className="order-date">{formatDate(order.date)}</p>
+                  <p className="order-date">{formatDate(order.createdAt)}</p>
                 </div>
                 <div className="order-status">
                   <span 
@@ -276,9 +266,9 @@ const MyOrders = () => {
                 >
                   Track Order
                 </button>
-                {order.status !== 'Delivered' && order.status !== 'Cancelled' && canCancelOrder(order.date) && (
+                {order.status !== 'Delivered' && order.status !== 'Cancelled' && canCancelOrder(order.createdAt) && (
                   <div className="cancel-section">
-                    <span className="cancel-timer">Cancel in: {timers[order._id] || getTimeLeft(order.date)}</span>
+                    <span className="cancel-timer">Cancel in: {timers[order._id] || getTimeLeft(order.createdAt)}</span>
                     <button 
                       onClick={() => cancelOrder(order._id)}
                       className="cancel-btn"
@@ -288,7 +278,7 @@ const MyOrders = () => {
                     </button>
                   </div>
                 )}
-                {order.status !== 'Delivered' && order.status !== 'Cancelled' && !canCancelOrder(order.date) && (
+                {order.status !== 'Delivered' && order.status !== 'Cancelled' && !canCancelOrder(order.createdAt) && (
                   <button className="cancel-btn disabled" disabled>
                     Cannot Cancel
                   </button>
@@ -395,7 +385,7 @@ const MyOrders = () => {
                       </div>
                       <div style={{ fontSize: '14px', color: '#666' }}>
                         <div>Amount: ₹{parseFloat(order.amount).toFixed(2)}</div>
-                        <div>Date: {new Date(order.date).toLocaleDateString()}</div>
+                        <div>Date: {new Date(order.createdAt).toLocaleDateString()}</div>
                         <div>Items: {order.items?.length || 0}</div>
                       </div>
                     </div>
