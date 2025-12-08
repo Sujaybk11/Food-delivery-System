@@ -11,40 +11,15 @@ const Orders = () => {
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      // Get orders from localStorage for demo
-      const savedOrders = JSON.parse(localStorage.getItem('userOrders') || '[]');
-      
-      // Simulate order status progression for admin view
-      const updatedOrders = savedOrders.map(order => {
-        // If status was manually set by admin, keep it
-        if (order.manualStatus) {
-          return {
-            ...order,
-            _id: order.orderId,
-            status: order.status
-          };
-        }
-        
-        // Otherwise, use automatic progression
-        const orderTime = new Date(order.date);
-        const now = new Date();
-        const minutesElapsed = (now - orderTime) / (1000 * 60);
-        
-        let status = 'Food Processing';
-        if (minutesElapsed > 15) {
-          status = 'Delivered';
-        } else if (minutesElapsed > 10) {
-          status = 'Out for delivery';
-        }
-        
-        return {
-          ...order,
-          _id: order.orderId,
-          status: order.status === 'Cancelled' ? 'Cancelled' : status
-        };
+      const response = await axios.get('http://localhost:4000/api/order/list', {
+        headers: { token }
       });
       
-      setOrders(updatedOrders.reverse()); // Latest first
+      if (response.data.success) {
+        setOrders(response.data.data);
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (error) {
       toast.error("Failed to fetch orders");
     }
@@ -53,27 +28,19 @@ const Orders = () => {
 
   const updateOrderStatus = async (orderId, status) => {
     try {
-      // Update order status in localStorage
-      const savedOrders = JSON.parse(localStorage.getItem('userOrders') || '[]');
-      const updatedOrders = savedOrders.map(order => {
-        if (order.orderId === orderId) {
-          return { 
-            ...order, 
-            status,
-            manualStatus: true, // Mark as manually set
-            deliveredAt: status === 'Delivered' ? new Date().toISOString() : order.deliveredAt
-          };
-        }
-        return order;
-      });
-      localStorage.setItem('userOrders', JSON.stringify(updatedOrders));
+      const response = await axios.post('http://localhost:4000/api/order/status', 
+        { orderId, status },
+        { headers: { token } }
+      );
       
-      // Update local state immediately
-      setOrders(prev => prev.map(order => 
-        order._id === orderId ? { ...order, status } : order
-      ));
-      
-      toast.success(`Order status updated to ${status}`);
+      if (response.data.success) {
+        setOrders(prev => prev.map(order => 
+          order._id === orderId ? { ...order, status } : order
+        ));
+        toast.success(`Order status updated to ${status}`);
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (error) {
       toast.error("Failed to update status");
     }
