@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: food-delivery-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: food-delivery-system-backend:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 4000
+        env:
+        - name: MONGO_URL
+          value: "mongodb://mongodb-service:27017/food_delivery"
+        - name: JWT_SECRET
+          value: "your_super_secret_jwt_key_food_delivery_2024"
+        - name: SALT
+          value: "10"
+        - name: PORT
+          value: "4000"
+        - name: STRIPE_SECRET_KEY
+          value: "sk_test_dummy_key_for_testing"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: food-delivery-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: food-delivery-system-frontend:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+        env:
+        - name: VITE_API_URL
+          value: "http://localhost:4000"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: food-delivery-admin
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: admin
+  template:
+    metadata:
+      labels:
+        app: admin
+    spec:
+      containers:
+      - name: admin
+        image: food-delivery-system-admin:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5176
+        env:
+        - name: VITE_API_URL
+          value: "http://localhost:4000"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+      - name: mongodb
+        image: mongo:latest
+        ports:
+        - containerPort: 27017
