@@ -40,18 +40,7 @@ const AdminDashboard = () => {
           >
             Analytics
           </button>
-          <button 
-            onClick={() => setActiveTab("orders")}
-            style={{ 
-              padding: '10px', 
-              backgroundColor: activeTab === "orders" ? '#007bff' : 'white',
-              color: activeTab === "orders" ? 'white' : 'black',
-              border: '1px solid #ddd',
-              cursor: 'pointer'
-            }}
-          >
-            Orders
-          </button>
+
           <button 
             onClick={() => setActiveTab("add")}
             style={{ 
@@ -129,7 +118,7 @@ const AdminDashboard = () => {
       
       <div style={{ flex: 1, padding: '20px' }}>
         {activeTab === "analytics" && <Analytics />}
-        {activeTab === "orders" && <Orders />}
+
         {activeTab === "add" && <Add />}
         {activeTab === "users" && <Users />}
         {activeTab === "coupons" && <Coupons />}
