@@ -22,7 +22,9 @@ const AdminLogin = ({ setShowAdminLogin, url }) => {
     event.preventDefault();
     
     try {
+      console.log('Attempting admin login to:', `${url}/api/admin/login`);
       const response = await axios.post(`${url}/api/admin/login`, data);
+      console.log('Admin login response:', response.data);
       
       if (response.data.success && response.data.isAdmin) {
         localStorage.setItem("token", response.data.token);
@@ -34,7 +36,8 @@ const AdminLogin = ({ setShowAdminLogin, url }) => {
         toast.error(response.data.message);
       }
     } catch (error) {
-      toast.error("Login failed. Please try again.");
+      console.error('Admin login error:', error);
+      toast.error(error.response?.data?.message || "Login failed. Please try again.");
     }
   };
 

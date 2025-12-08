@@ -31,7 +31,7 @@ const App = () => {
   const url = import.meta.env.VITE_API_URL || 
               (window.location.hostname === 'localhost' 
                 ? "http://localhost:4000" 
-                : "https://food-delivery-backend-5b6g.onrender.com");
+                : "https://food-delivery-system-0nyi.onrender.com");
   
   return (
     <>
