@@ -72,7 +72,7 @@ const Navbar = ({ setShowLogin, setShowAdminLogin }) => {
         {!token ? (
           <div className="navbar-auth-buttons">
             <button onClick={() => setShowLogin(true)}>sign in</button>
-            <button onClick={() => setShowAdminLogin(true)} className="admin-btn">admin</button>
+            <button onClick={() => { console.log('Admin button clicked'); setShowAdminLogin(true); }} className="admin-btn">admin</button>
           </div>
         ) : (
           <div className="navbar-auth-buttons">
