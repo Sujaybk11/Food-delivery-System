@@ -28,7 +28,9 @@ const allowedOrigins = [
   'http://127.0.0.1:3000',
   'http://127.0.0.1:5173',
   'http://127.0.0.1:5174',
-  'http://127.0.0.1:5176'
+  'http://127.0.0.1:5176',
+  'https://food-delivery-system-0nyi.onrender.com',
+  'https://food-delivery-frontend-s2l9.onrender.com'
 ];
 
 app.use(cors({
