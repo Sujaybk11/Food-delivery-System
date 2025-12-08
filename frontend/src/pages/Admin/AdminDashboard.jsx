@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import Add from "./Add";
-import Orders from "./Orders";
 import Users from "./Users";
 import Analytics from "./Analytics";
 import Coupons from "./Coupons";
